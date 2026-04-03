@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hikari Nihongo Center - Belajar Bahasa Jepang</title>
+    <meta name="description" content="Platform pembelajaran bahasa Jepang lengkap dengan Hiragana, Katakana, Kanji, Kosakata, dan Quiz">
+    <link rel="icon" href="https://hikari-jlc.github.io/images/logo1.ico" type="image/x-icon">
+	<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #991b1b;
+            --primary-light: #fef2f2;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, var(--primary-light) 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+		
+		.logo-icon img {
+		  width: 100%;
+		  height: auto;
+		}
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero > p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        /* Tabs */
+        .tabs-container {
+            margin-bottom: 3rem;
+        }
+
+        .tabs-nav {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gray-100);
+            padding: 0.5rem;
+            border-radius: var(--radius-lg);
+        }
+
+        @media (min-width: 640px) {
+            .tabs-nav {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--gray-900);
+        }
+
+        .tab-btn.active {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title span {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .card-description {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Character Grid */
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .char-grid {
+                grid-template-columns: repeat(10, 1fr);
+            }
+        }
+
+        .char-btn {
+            aspect-ratio: 1;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .char-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: scale(1.05);
+        }
+
+        .char-btn .char {
+            font-size: 1.5rem;
+            color: var(--gray-800);
+        }
+
+        .char-btn .romaji {
+            font-size: 0.625rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        /* Kanji Grid */
+        .kanji-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .kanji-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .kanji-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .kanji-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+
+        .kanji-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .kanji-card .kanji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .kanji-card .meaning {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .kanji-card .reading {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+
+        .kanji-card .audio-btn {
+            margin-top: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+            background: var(--gray-100);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .kanji-card .audio-btn:hover {
+            background: var(--gray-200);
+        }
+
+        /* Vocab Grid */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .vocab-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .vocab-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+
+        .vocab-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .vocab-card .vocab-text .japanese {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .vocab-card .vocab-text .romaji {
+            font-size: 0.875rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .vocab-card .vocab-text .meaning {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .vocab-card .audio-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .vocab-card .audio-btn:hover {
+            background: var(--gray-50);
+            border-color: var(--primary);
+        }
+
+        /* Quiz */
+        .quiz-container {
+            text-align: center;
+        }
+
+        .quiz-progress {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-question {
+            padding: 2rem 0;
+        }
+
+        .quiz-question h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-question .japanese {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .quiz-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .quiz-option.wrong {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .quiz-option:disabled {
+            cursor: not-allowed;
+        }
+
+        .quiz-next {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-lg {
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+        }
+
+        /* Quiz Result */
+        .quiz-result {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .quiz-result .emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-result h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-result .score {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .quiz-result .progress-bar {
+            max-width: 400px;
+            margin: 0 auto 1.5rem;
+            height: 12px;
+        }
+
+        .quiz-result .message {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Phrases Section */
+        .phrases-section {
+            margin-top: 3rem;
+        }
+
+        .phrases-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .phrases-card .card-header {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .phrases-card .card-description {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .phrases-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .phrases-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .phrase-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius);
+            padding: 1rem;
+        }
+
+        .phrase-item .japanese {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .phrase-item .romaji {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+        }
+
+        .phrase-item .meaning {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 0.75rem;
+        }
+
+        .phrase-item .audio-btn {
+            width: 100%;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: var(--radius);
+            color: var(--white);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .phrase-item .audio-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            max-width: 400px;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: center;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal p {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal .char-display {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal .romaji-display {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-400);
+        }
+
+        .modal-close:hover {
+            color: var(--gray-600);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-800);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: var(--gray-400);
+        }
+
+        footer .motivation {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(220, 38, 38, 0.2);
+        }
+
+        /* Utility */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Icon */
+        .icon {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"><img src="https://hikari-jlc.github.io/images/logo1.ico"></div>
+                    <div class="logo-text">
+                        <h1>Hikari Nihongo Center</h1>
+                        <p>Belajar Bahasa Jepang dengan Mudah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>こんにちは！</h2>
+            <p>Selamat datang di platform pembelajaran bahasa Jepang terlengkap</p>
+            <div class="badges">
+                <span class="badge">📚 Aksara Jepang</span>
+                <span class="badge">💬 Percakapan</span>
+                <span class="badge">🎓 Kanji JLPT</span>
+                <span class="badge">🎮 Quiz Interaktif</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="tabs-container">
+            <!-- Tabs Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="hiragana">Hiragana</button>
+                <button class="tab-btn" data-tab="katakana">Katakana</button>
+                <button class="tab-btn" data-tab="kanji">Kanji N5</button>
+                <button class="tab-btn" data-tab="vocab">Kosakata</button>
+                <button class="tab-btn" data-tab="quiz">Quiz</button>
+            </div>
+
+            <!-- Hiragana Tab -->
+            <div id="hiragana" class="tab-content active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>あ</span> Tabel Hiragana</h2>
+                        <p class="card-description">Klik pada karakter untuk melihat detail dan mendengarkan pengucapan</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="char-grid" id="hiragana-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Katakana Tab -->
+            <div id="katakana" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>ア</span> Tabel Katakana</h2>
+                        <p class="card-description">Digunakan untuk kata serapan dari bahasa asing</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="char-grid" id="katakana-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kanji Tab -->
+            <div id="kanji" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>漢</span> Kanji JLPT N5 (Dasar)</h2>
+                        <p class="card-description">80+ Kanji dasar yang sering digunakan</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="kanji-grid" id="kanji-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Tab -->
+            <div id="vocab" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>単</span> Kosakata Populer</h2>
+                        <p class="card-description">Kumpulan kosakata yang sering digunakan sehari-hari</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="vocab-grid" id="vocab-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab -->
+            <div id="quiz" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><span>🎮</span> Quiz Bahasa Jepang</h2>
+                        <p class="card-description">Uji pengetahuanmu dengan quiz interaktif!</p>
+                    </div>
+                    <div class="card-content">
+                        <div id="quiz-container" class="quiz-container">
+                            <!-- Quiz content will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phrases Section -->
+        <section class="phrases-section">
+            <div class="phrases-card">
+                <div class="card-header">
+                    <h2 class="card-title">💬 Frasa Percakapan Sehari-hari</h2>
+                    <p class="card-description">Pelajari frasa-frasa yang sering digunakan dalam kehidupan sehari-hari</p>
+                </div>
+                <div class="card-content">
+                    <div class="phrases-grid" id="phrases-grid"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Hikari Nihongo Center - Belajar Bahasa Jepang dengan Mudah</p>
+            <p class="motivation">がんばって！ (Ganbatte! - Semangat!)</p>
+        </div>
+    </footer>
+
+    <!-- Character Modal -->
+    <div class="modal-overlay" id="char-modal">
+        <div class="modal">
+            <h3 id="modal-title">Hiragana</h3>
+            <p>Pengucapan dalam romaji</p>
+            <div class="char-display" id="modal-char">あ</div>
+            <div class="romaji-display" id="modal-romaji">a</div>
+            <button class="btn" onclick="playAudio(document.getElementById('modal-char').textContent)">
+                🔊 Dengarkan Pengucapan
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const hiraganaData = [
+            { char: 'あ', romaji: 'a' }, { char: 'い', romaji: 'i' }, { char: 'う', romaji: 'u' },
+            { char: 'え', romaji: 'e' }, { char: 'お', romaji: 'o' },
+            { char: 'か', romaji: 'ka' }, { char: 'き', romaji: 'ki' }, { char: 'く', romaji: 'ku' },
+            { char: 'け', romaji: 'ke' }, { char: 'こ', romaji: 'ko' },
+            { char: 'さ', romaji: 'sa' }, { char: 'し', romaji: 'shi' }, { char: 'す', romaji: 'su' },
+            { char: 'せ', romaji: 'se' }, { char: 'そ', romaji: 'so' },
+            { char: 'た', romaji: 'ta' }, { char: 'ち', romaji: 'chi' }, { char: 'つ', romaji: 'tsu' },
+            { char: 'て', romaji: 'te' }, { char: 'と', romaji: 'to' },
+            { char: 'な', romaji: 'na' }, { char: 'に', romaji: 'ni' }, { char: 'ぬ', romaji: 'nu' },
+            { char: 'ね', romaji: 'ne' }, { char: 'の', romaji: 'no' },
+            { char: 'は', romaji: 'ha' }, { char: 'ひ', romaji: 'hi' }, { char: 'ふ', romaji: 'fu' },
+            { char: 'へ', romaji: 'he' }, { char: 'ほ', romaji: 'ho' },
+            { char: 'ま', romaji: 'ma' }, { char: 'み', romaji: 'mi' }, { char: 'む', romaji: 'mu' },
+            { char: 'め', romaji: 'me' }, { char: 'も', romaji: 'mo' },
+            { char: 'や', romaji: 'ya' }, { char: 'ゆ', romaji: 'yu' }, { char: 'よ', romaji: 'yo' },
+            { char: 'ら', romaji: 'ra' }, { char: 'り', romaji: 'ri' }, { char: 'る', romaji: 'ru' },
+            { char: 'れ', romaji: 're' }, { char: 'ろ', romaji: 'ro' },
+            { char: 'わ', romaji: 'wa' }, { char: 'を', romaji: 'wo' }, { char: 'ん', romaji: 'n' },
+        ];
+
+        const katakanaData = [
+            { char: 'ア', romaji: 'a' }, { char: 'イ', romaji: 'i' }, { char: 'ウ', romaji: 'u' },
+            { char: 'エ', romaji: 'e' }, { char: 'オ', romaji: 'o' },
+            { char: 'カ', romaji: 'ka' }, { char: 'キ', romaji: 'ki' }, { char: 'ク', romaji: 'ku' },
+            { char: 'ケ', romaji: 'ke' }, { char: 'コ', romaji: 'ko' },
+            { char: 'サ', romaji: 'sa' }, { char: 'シ', romaji: 'shi' }, { char: 'ス', romaji: 'su' },
+            { char: 'セ', romaji: 'se' }, { char: 'ソ', romaji: 'so' },
+            { char: 'タ', romaji: 'ta' }, { char: 'チ', romaji: 'chi' }, { char: 'ツ', romaji: 'tsu' },
+            { char: 'テ', romaji: 'te' }, { char: 'ト', romaji: 'to' },
+            { char: 'ナ', romaji: 'na' }, { char: 'ニ', romaji: 'ni' }, { char: 'ヌ', romaji: 'nu' },
+            { char: 'ネ', romaji: 'ne' }, { char: 'ノ', romaji: 'no' },
+            { char: 'ハ', romaji: 'ha' }, { char: 'ヒ', romaji: 'hi' }, { char: 'フ', romaji: 'fu' },
+            { char: 'ヘ', romaji: 'he' }, { char: 'ホ', romaji: 'ho' },
+            { char: 'マ', romaji: 'ma' }, { char: 'ミ', romaji: 'mi' }, { char: 'ム', romaji: 'mu' },
+            { char: 'メ', romaji: 'me' }, { char: 'モ', romaji: 'mo' },
+            { char: 'ヤ', romaji: 'ya' }, { char: 'ユ', romaji: 'yu' }, { char: 'ヨ', romaji: 'yo' },
+            { char: 'ラ', romaji: 'ra' }, { char: 'リ', romaji: 'ri' }, { char: 'ル', romaji: 'ru' },
+            { char: 'レ', romaji: 're' }, { char: 'ロ', romaji: 'ro' },
+            { char: 'ワ', romaji: 'wa' }, { char: 'ヲ', romaji: 'wo' }, { char: 'ン', romaji: 'n' },
+        ];
+
+        const kanjiData = [
+            { char: '一', meaning: 'Satu', on: 'ichi', kun: 'hito' },
+            { char: '二', meaning: 'Dua', on: 'ni', kun: 'futa' },
+            { char: '三', meaning: 'Tiga', on: 'san', kun: 'mi' },
+            { char: '四', meaning: 'Empat', on: 'shi', kun: 'yon' },
+            { char: '五', meaning: 'Lima', on: 'go', kun: 'itsu' },
+            { char: '六', meaning: 'Enam', on: 'roku', kun: 'mu' },
+            { char: '七', meaning: 'Tujuh', on: 'shichi', kun: 'nana' },
+            { char: '八', meaning: 'Delapan', on: 'hachi', kun: 'ya' },
+            { char: '九', meaning: 'Sembilan', on: 'kyuu', kun: 'kokono' },
+            { char: '十', meaning: 'Sepuluh', on: 'juu', kun: 'tou' },
+            { char: '百', meaning: 'Seratus', on: 'hyaku', kun: 'momo' },
+            { char: '千', meaning: 'Seribu', on: 'sen', kun: 'chi' },
+            { char: '万', meaning: 'Sepuluh ribu', on: 'man', kun: 'yorozu' },
+            { char: '日', meaning: 'Hari/Matahari', on: 'nichi', kun: 'hi' },
+            { char: '月', meaning: 'Bulan', on: 'getsu', kun: 'tsuki' },
+            { char: '火', meaning: 'Api', on: 'ka', kun: 'hi' },
+            { char: '水', meaning: 'Air', on: 'sui', kun: 'mizu' },
+            { char: '木', meaning: 'Pohon/Kayu', on: 'moku', kun: 'ki' },
+            { char: '金', meaning: 'Uang/Emas', on: 'kin', kun: 'kane' },
+            { char: '土', meaning: 'Tanah', on: 'do', kun: 'tsuchi' },
+            { char: '人', meaning: 'Orang', on: 'jin', kun: 'hito' },
+            { char: '子', meaning: 'Anak', on: 'shi', kun: 'ko' },
+            { char: '女', meaning: 'Wanita', on: 'jo', kun: 'onna' },
+            { char: '男', meaning: 'Pria', on: 'dan', kun: 'otoko' },
+            { char: '山', meaning: 'Gunung', on: 'san', kun: 'yama' },
+            { char: '川', meaning: 'Sungai', on: 'sen', kun: 'kawa' },
+            { char: '田', meaning: 'Sawah', on: 'den', kun: 'ta' },
+            { char: '目', meaning: 'Mata', on: 'moku', kun: 'me' },
+            { char: '耳', meaning: 'Telinga', on: 'ji', kun: 'mimi' },
+            { char: '口', meaning: 'Mulut', on: 'kou', kun: 'kuchi' },
+            { char: '手', meaning: 'Tangan', on: 'shu', kun: 'te' },
+            { char: '足', meaning: 'Kaki', on: 'soku', kun: 'ashi' },
+            { char: '本', meaning: 'Buku/Asal', on: 'hon', kun: 'moto' },
+            { char: '学', meaning: 'Belajar', on: 'gaku', kun: 'mana' },
+            { char: '校', meaning: 'Sekolah', on: 'kou', kun: '' },
+            { char: '先', meaning: 'Depan/Utama', on: 'sen', kun: 'saki' },
+            { char: '生', meaning: 'Hidup/Lahir', on: 'sei', kun: 'i' },
+            { char: '何', meaning: 'Apa', on: 'ka', kun: 'nani' },
+            { char: '私', meaning: 'Saya', on: 'shi', kun: 'watashi' },
+            { char: '友', meaning: 'Teman', on: 'yuu', kun: 'tomo' },
+            { char: '家', meaning: 'Rumah', on: 'ka', kun: 'ie' },
+            { char: '父', meaning: 'Ayah', on: 'fu', kun: 'chichi' },
+            { char: '母', meaning: 'Ibu', on: 'bo', kun: 'haha' },
+            { char: '上', meaning: 'Atas', on: 'jou', kun: 'ue' },
+            { char: '下', meaning: 'Bawah', on: 'ka', kun: 'shita' },
+            { char: '中', meaning: 'Tengah', on: 'chuu', kun: 'naka' },
+            { char: '大', meaning: 'Besar', on: 'dai', kun: 'ookii' },
+            { char: '小', meaning: 'Kecil', on: 'shou', kun: 'chiisai' },
+            { char: '新', meaning: 'Baru', on: 'shin', kun: 'atara' },
+            { char: '古', meaning: 'Lama/Tua', on: 'ko', kun: 'furu' },
+            { char: '長', meaning: 'Panjang/Pimpinan', on: 'chou', kun: 'naga' },
+            { char: '高', meaning: 'Tinggi/Mahal', on: 'kou', kun: 'taka' },
+            { char: '安', meaning: 'Murah/Tenang', on: 'an', kun: 'yasu' },
+            { char: '多', meaning: 'Banyak', on: 'ta', kun: 'ooi' },
+            { char: '少', meaning: 'Sedikit', on: 'shou', kun: 'sukunai' },
+            { char: '食', meaning: 'Makan', on: 'shoku', kun: 'ta' },
+            { char: '飲', meaning: 'Minum', on: 'in', kun: 'no' },
+            { char: '見', meaning: 'Lihat', on: 'ken', kun: 'mi' },
+            { char: '聞', meaning: 'Dengar/Tanya', on: 'bun', kun: 'ki' },
+            { char: '読', meaning: 'Baca', on: 'doku', kun: 'yo' },
+            { char: '書', meaning: 'Tulis', on: 'sho', kun: 'ka' },
+            { char: '話', meaning: 'Cerita/Bicara', on: 'wa', kun: 'hana' },
+            { char: '買', meaning: 'Beli', on: 'bai', kun: 'ka' },
+            { char: '行', meaning: 'Pergi', on: 'kou', kun: 'i' },
+            { char: '来', meaning: 'Datang', on: 'rai', kun: 'ku' },
+            { char: '帰', meaning: 'Pulang', on: 'ki', kun: 'kae' },
+            { char: '出', meaning: 'Keluar', on: 'shutsu', kun: 'de' },
+            { char: '入', meaning: 'Masuk', on: 'nyuu', kun: 'hai' },
+            { char: '会', meaning: 'Bertemu', on: 'kai', kun: 'a' },
+            { char: '休', meaning: 'Istirahat', on: 'kyuu', kun: 'yasu' },
+            { char: '時', meaning: 'Waktu/Jam', on: 'ji', kun: 'toki' },
+            { char: '分', meaning: 'Menit/Paham', on: 'fun', kun: 'wa' },
+            { char: '午', meaning: 'Siang', on: 'go', kun: 'uma' },
+            { char: '前', meaning: 'Sebelum', on: 'zen', kun: 'mae' },
+            { char: '後', meaning: 'Sesudah', on: 'go', kun: 'ato' },
+            { char: '間', meaning: 'Antara', on: 'kan', kun: 'aida' },
+            { char: '東', meaning: 'Timur', on: 'tou', kun: 'higashi' },
+            { char: '西', meaning: 'Barat', on: 'sei', kun: 'nishi' },
+            { char: '南', meaning: 'Selatan', on: 'nan', kun: 'minami' },
+            { char: '北', meaning: 'Utara', on: 'hoku', kun: 'kita' },
+            { char: '外', meaning: 'Luar', on: 'gai', kun: 'soto' },
+            { char: '内', meaning: 'Dalam', on: 'nai', kun: 'uchi' },
+            { char: '名', meaning: 'Nama', on: 'mei', kun: 'na' },
+            { char: '白', meaning: 'Putih', on: 'haku', kun: 'shiro' },
+            { char: '黒', meaning: 'Hitam', on: 'koku', kun: 'kuro' },
+            { char: '赤', meaning: 'Merah', on: 'seki', kun: 'aka' },
+            { char: '青', meaning: 'Biru/Hijau', on: 'sei', kun: 'ao' },
+            { char: '車', meaning: 'Mobil', on: 'sha', kun: 'kuruma' },
+            { char: '電', meaning: 'Listrik', on: 'den', kun: '' },
+            { char: '雨', meaning: 'Hujan', on: 'u', kun: 'ame' },
+            { char: '雪', meaning: 'Salju', on: 'setsu', kun: 'yuki' },
+            { char: '天', meaning: 'Langit', on: 'ten', kun: 'ame' },
+            { char: '気', meaning: 'Udara/Perasaan', on: 'ki', kun: '' },
+        ];
+
+        const vocabData = [
+            { ja: 'こんにちは', romaji: 'konnichiwa', meaning: 'Halo/Selamat siang' },
+            { ja: 'おはよう', romaji: 'ohayou', meaning: 'Selamat pagi' },
+            { ja: 'こんばんは', romaji: 'konbanwa', meaning: 'Selamat malam' },
+            { ja: 'さようなら', romaji: 'sayounara', meaning: 'Selamat tinggal' },
+            { ja: 'ありがとう', romaji: 'arigatou', meaning: 'Terima kasih' },
+            { ja: 'すみません', romaji: 'sumimasen', meaning: 'Maaf/Permisi' },
+            { ja: 'はい', romaji: 'hai', meaning: 'Ya' },
+            { ja: 'いいえ', romaji: 'iie', meaning: 'Tidak' },
+            { ja: 'わかりました', romaji: 'wakarimashita', meaning: 'Saya mengerti' },
+            { ja: 'お願いします', romaji: 'onegaishimasu', meaning: 'Tolong' },
+            { ja: '水', romaji: 'mizu', meaning: 'Air' },
+            { ja: 'ご飯', romaji: 'gohan', meaning: 'Nasi/Makan' },
+            { ja: 'お茶', romaji: 'ocha', meaning: 'Teh' },
+            { ja: '猫', romaji: 'neko', meaning: 'Kucing' },
+            { ja: '犬', romaji: 'inu', meaning: 'Anjing' },
+            { ja: '本', romaji: 'hon', meaning: 'Buku' },
+            { ja: '学校', romaji: 'gakkou', meaning: 'Sekolah' },
+            { ja: '先生', romaji: 'sensei', meaning: 'Guru' },
+            { ja: '学生', romaji: 'gakusei', meaning: 'Pelajar' },
+            { ja: '友達', romaji: 'tomodachi', meaning: 'Teman' },
+            { ja: '家族', romaji: 'kazoku', meaning: 'Keluarga' },
+            { ja: '母', romaji: 'haha', meaning: 'Ibu' },
+            { ja: '父', romaji: 'chichi', meaning: 'Ayah' },
+            { ja: '家', romaji: 'ie', meaning: 'Rumah' },
+            { ja: '車', romaji: 'kuruma', meaning: 'Mobil' },
+            { ja: '電車', romaji: 'densha', meaning: 'Kereta' },
+            { ja: '今日', romaji: 'kyou', meaning: 'Hari ini' },
+            { ja: '明日', romaji: 'ashita', meaning: 'Besok' },
+            { ja: '昨日', romaji: 'kinou', meaning: 'Kemarin' },
+            { ja: '朝', romaji: 'asa', meaning: 'Pagi' },
+            { ja: '昼', romaji: 'hiru', meaning: 'Siang' },
+            { ja: '夜', romaji: 'yoru', meaning: 'Malam' },
+            { ja: '時間', romaji: 'jikan', meaning: 'Waktu' },
+            { ja: '一', romaji: 'ichi', meaning: 'Satu' },
+            { ja: '二', romaji: 'ni', meaning: 'Dua' },
+            { ja: '三', romaji: 'san', meaning: 'Tiga' },
+            { ja: '四', romaji: 'yon', meaning: 'Empat' },
+            { ja: '五', romaji: 'go', meaning: 'Lima' },
+            { ja: '六', romaji: 'roku', meaning: 'Enam' },
+            { ja: '七', romaji: 'nana', meaning: 'Tujuh' },
+            { ja: '八', romaji: 'hachi', meaning: 'Delapan' },
+            { ja: '九', romaji: 'kyuu', meaning: 'Sembilan' },
+            { ja: '十', romaji: 'juu', meaning: 'Sepuluh' },
+            { ja: '食べる', romaji: 'taberu', meaning: 'Makan' },
+            { ja: '飲む', romaji: 'nomu', meaning: 'Minum' },
+            { ja: '見る', romaji: 'miru', meaning: 'Melihat' },
+            { ja: '聞く', romaji: 'kiku', meaning: 'Mendengar' },
+            { ja: '読む', romaji: 'yomu', meaning: 'Membaca' },
+            { ja: '書く', romaji: 'kaku', meaning: 'Menulis' },
+            { ja: '話す', romaji: 'hanasu', meaning: 'Berbicara' },
+            { ja: '買う', romaji: 'kau', meaning: 'Membeli' },
+            { ja: '行く', romaji: 'iku', meaning: 'Pergi' },
+            { ja: '来る', romaji: 'kuru', meaning: 'Datang' },
+            { ja: '帰る', romaji: 'kaeru', meaning: 'Pulang' },
+            { ja: '好き', romaji: 'suki', meaning: 'Suka' },
+            { ja: '嫌い', romaji: 'kirai', meaning: 'Tidak suka' },
+            { ja: '大きい', romaji: 'ookii', meaning: 'Besar' },
+            { ja: '小さい', romaji: 'chiisai', meaning: 'Kecil' },
+            { ja: '新しい', romaji: 'atarashii', meaning: 'Baru' },
+            { ja: '古い', romaji: 'furui', meaning: 'Lama/Tua' },
+            { ja: '高い', romaji: 'takai', meaning: 'Tinggi/Mahal' },
+            { ja: '安い', romaji: 'yasui', meaning: 'Murah' },
+            { ja: '多い', romaji: 'ooi', meaning: 'Banyak' },
+            { ja: '少ない', romaji: 'sukunai', meaning: 'Sedikit' },
+            { ja: '良い', romaji: 'yoi', meaning: 'Baik' },
+            { ja: '悪い', romaji: 'warui', meaning: 'Buruk' },
+            { ja: '楽しい', romaji: 'tanoshii', meaning: 'Menyenangkan' },
+            { ja: '難しい', romaji: 'muzukashii', meaning: 'Sulit' },
+            { ja: '易しい', romaji: 'yasashii', meaning: 'Mudah' },
+            { ja: '寒い', romaji: 'samui', meaning: 'Dingin' },
+            { ja: '暑い', romaji: 'atsui', meaning: 'Panas' },
+            { ja: '美味しい', romaji: 'oishii', meaning: 'Lezat' },
+            { ja: '不味い', romaji: 'mazui', meaning: 'Tidak enak' },
+            { ja: '綺麗', romaji: 'kirei', meaning: 'Cantik/Bersih' },
+            { ja: '汚い', romaji: 'kitanai', meaning: 'Kotor' },
+            { ja: '静か', romaji: 'shizuka', meaning: 'Tenang' },
+            { ja: '賑やか', romaji: 'nigiyaka', meaning: 'Ramai' },
+            { ja: '便利', romaji: 'benri', meaning: 'Mudah/Memanfaatkan' },
+            { ja: '元気', romaji: 'genki', meaning: 'Sehat/Semangat' },
+            { ja: '病気', romaji: 'byouki', meaning: 'Sakit' },
+            { ja: '大丈夫', romaji: 'daijoubu', meaning: 'Baik-baik saja' },
+        ];
+
+        const phrasesData = [
+            { ja: 'おはようございます', romaji: 'Ohayou gozaimasu', meaning: 'Selamat pagi (formal)' },
+            { ja: 'こんにちは', romaji: 'Konnichiwa', meaning: 'Selamat siang' },
+            { ja: 'こんばんは', romaji: 'Konbanwa', meaning: 'Selamat malam' },
+            { ja: 'さようなら', romaji: 'Sayounara', meaning: 'Selamat tinggal' },
+            { ja: 'またね', romaji: 'Mata ne', meaning: 'Sampai jumpa lagi' },
+            { ja: 'おやすみなさい', romaji: 'Oyasumi nasai', meaning: 'Selamat tidur' },
+            { ja: 'ありがとうございます', romaji: 'Arigatou gozaimasu', meaning: 'Terima kasih (formal)' },
+            { ja: 'どういたしまして', romaji: 'Dou itashimashite', meaning: 'Sama-sama' },
+            { ja: 'すみません', romaji: 'Sumimasen', meaning: 'Maaf/Permisi' },
+            { ja: 'ごめんなさい', romaji: 'Gomen nasai', meaning: 'Maafkan saya' },
+            { ja: 'お願いします', romaji: 'Onegaishimasu', meaning: 'Tolong' },
+            { ja: 'はい、分かりました', romaji: 'Hai, wakarimashita', meaning: 'Ya, saya mengerti' },
+            { ja: '分かりません', romaji: 'Wakarimasen', meaning: 'Saya tidak mengerti' },
+            { ja: 'もう一度お願いします', romaji: 'Mou ichido onegaishimasu', meaning: 'Tolong ulangi lagi' },
+            { ja: 'ゆっくりお願いします', romaji: 'Yukkuri onegaishimasu', meaning: 'Tolong pelan-pelan' },
+            { ja: '英語を話せますか', romaji: 'Eigo wo hanasemasu ka', meaning: 'Apakah Anda bisa bahasa Inggris?' },
+            { ja: '日本語が分かりません', romaji: 'Nihongo ga wakarimasen', meaning: 'Saya tidak mengerti bahasa Jepang' },
+            { ja: 'トイレはどこですか', romaji: 'Toire wa doko desu ka', meaning: 'Di mana toilet?' },
+            { ja: 'これはいくらですか', romaji: 'Kore wa ikura desu ka', meaning: 'Berapa harga ini?' },
+            { ja: '助けてください', romaji: 'Tasukete kudasai', meaning: 'Tolong bantu saya' },
+            { ja: '大丈夫ですか', romaji: 'Daijoubu desu ka', meaning: 'Apakah Anda baik-baik saja?' },
+            { ja: 'お元気ですか', romaji: 'Ogenki desu ka', meaning: 'Apa kabar?' },
+            { ja: '元気です', romaji: 'Genki desu', meaning: 'Saya baik-baik saja' },
+            { ja: 'お名前は何ですか', romaji: 'Onamae wa nan desu ka', meaning: 'Siapa nama Anda?' },
+            { ja: '私の名前は...です', romaji: 'Watashi no namae wa ... desu', meaning: 'Nama saya adalah...' },
+            { ja: '初めまして', romaji: 'Hajimemashite', meaning: 'Senang berkenalan dengan Anda' },
+            { ja: 'どうぞよろしく', romaji: 'Douzo yoroshiku', meaning: 'Tolong berkenan' },
+            { ja: 'いただきます', romaji: 'Itadakimasu', meaning: 'Selamat makan (sebelum makan)' },
+            { ja: 'ごちそうさまでした', romaji: 'Gochisousama deshita', meaning: 'Terima kasih atas makanannya' },
+            { ja: '美味しいです', romaji: 'Oishii desu', meaning: 'Ini lezat' },
+            { ja: 'お腹が空きました', romaji: 'Onaka ga sukimashita', meaning: 'Saya lapar' },
+            { ja: '喉が渇きました', romaji: 'Nodo ga kawakimashita', meaning: 'Saya haus' },
+            { ja: '疲れました', romaji: 'Tsukaremashita', meaning: 'Saya lelah' },
+            { ja: '眠いです', romaji: 'Nemui desu', meaning: 'Saya mengantuk' },
+            { ja: '寒いです', romaji: 'Samui desu', meaning: 'Saya kedinginan' },
+            { ja: '暑いです', romaji: 'Atsui desu', meaning: 'Saya kepanasan' },
+            { ja: '楽しかったです', romaji: 'Tanoshikatta desu', meaning: 'Itu menyenangkan' },
+            { ja: '大好きです', romaji: 'Daisuki desu', meaning: 'Saya sangat suka' },
+            { ja: '愛しています', romaji: 'Aishite imasu', meaning: 'Saya mencintaimu' },
+            { ja: 'お誕生日おめでとう', romaji: 'Otanjoubi omedetou', meaning: 'Selamat ulang tahun' },
+            { ja: 'おめでとうございます', romaji: 'Omedetou gozaimasu', meaning: 'Selamat' },
+            { ja: '頑張ってください', romaji: 'Ganbatte kudasai', meaning: 'Semangat!' },
+            { ja: '気をつけて', romaji: 'Ki wo tsukete', meaning: 'Hati-hati' },
+            { ja: '行ってきます', romaji: 'Ittekimasu', meaning: 'Saya pergi dulu' },
+            { ja: '行ってらっしゃい', romaji: 'Itterasshai', meaning: 'Silakan pergi (jawaban)' },
+            { ja: 'ただいま', romaji: 'Tadaima', meaning: 'Saya sudah kembali' },
+            { ja: 'お帰りなさい', romaji: 'Okaerinasai', meaning: 'Selamat datang kembali' },
+        ];
+
+        const quizData = [
+            { q: 'Apa arti dari 「こんにちは」?', ja: 'こんにちは', options: ['Selamat pagi', 'Selamat siang', 'Selamat malam', 'Selamat tinggal'], correct: 1 },
+            { q: 'Hiragana mana yang dibaca "ka"?', options: ['き', 'く', 'け', 'か'], correct: 3 },
+            { q: 'Apa arti dari 「ありがとう」?', ja: 'ありがとう', options: ['Maaf', 'Permisi', 'Terima kasih', 'Sama-sama'], correct: 2 },
+            { q: 'Kanji 「水」memiliki arti?', ja: '水', options: ['Api', 'Air', 'Tanah', 'Angin'], correct: 1 },
+            { q: 'Apa arti dari 「学生」?', ja: '学生', options: ['Guru', 'Pelajar', 'Sekolah', 'Buku'], correct: 1 },
+            { q: 'Katakana mana yang dibaca "shi"?', options: ['サ', 'シ', 'ス', 'セ'], correct: 1 },
+            { q: '「すみません」digunakan untuk?', ja: 'すみません', options: ['Berterima kasih', 'Minta maaf/permisi', 'Mengucapkan selamat tinggal', 'Menyapa'], correct: 1 },
+            { q: 'Kanji 「山」dibaca?', ja: '山', options: ['Kawa', 'Yama', 'Mori', 'Umi'], correct: 1 },
+            { q: 'Apa arti dari 「おはよう」?', ja: 'おはよう', options: ['Selamat malam', 'Selamat siang', 'Selamat pagi', 'Selamat sore'], correct: 2 },
+            { q: '「猫」dalam bahasa Indonesia adalah?', ja: '猫', options: ['Anjing', 'Kucing', 'Burung', 'Ikan'], correct: 1 },
+            { q: 'Hiragana 「の」dibaca?', options: ['na', 'ni', 'nu', 'no'], correct: 3 },
+            { q: 'Apa arti dari 「美味しい」?', ja: '美味しい', options: ['Tidak enak', 'Panas', 'Lezat', 'Dingin'], correct: 2 },
+            { q: '「先生」merujuk pada?', ja: '先生', options: ['Pelajar', 'Guru', 'Dokter', 'Kedua B dan C benar'], correct: 3 },
+            { q: 'Kanji 「人」memiliki arti?', ja: '人', options: ['Orang', 'Rumah', 'Anak', 'Besar'], correct: 0 },
+            { q: 'Apa arti dari 「さようなら」?', ja: 'さようなら', options: ['Selamat pagi', 'Selamat siang', 'Selamat malam', 'Selamat tinggal'], correct: 3 },
+        ];
+
+        // Audio function
+        function playAudio(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ja-JP';
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Render Hiragana
+        function renderHiragana() {
+            const grid = document.getElementById('hiragana-grid');
+            grid.innerHTML = hiraganaData.map(item => `
+                <button class="char-btn" onclick="showCharModal('${item.char}', '${item.romaji}', 'Hiragana')">
+                    <span class="char">${item.char}</span>
+                    <span class="romaji">${item.romaji}</span>
+                </button>
+            `).join('');
+        }
+
+        // Render Katakana
+        function renderKatakana() {
+            const grid = document.getElementById('katakana-grid');
+            grid.innerHTML = katakanaData.map(item => `
+                <button class="char-btn" onclick="showCharModal('${item.char}', '${item.romaji}', 'Katakana')">
+                    <span class="char">${item.char}</span>
+                    <span class="romaji">${item.romaji}</span>
+                </button>
+            `).join('');
+        }
+
+        // Render Kanji
+        function renderKanji() {
+            const grid = document.getElementById('kanji-grid');
+            grid.innerHTML = kanjiData.map(item => `
+                <div class="kanji-card">
+                    <div class="kanji">${item.char}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <div class="reading">On: ${item.on || '-'}</div>
+                    <div class="reading">Kun: ${item.kun || '-'}</div>
+                    <button class="audio-btn" onclick="playAudio('${item.char}')">🔊 Dengar</button>
+                </div>
+            `).join('');
+        }
+
+        // Render Vocabulary
+        function renderVocab() {
+            const grid = document.getElementById('vocab-grid');
+            grid.innerHTML = vocabData.map(item => `
+                <div class="vocab-card">
+                    <div class="vocab-text">
+                        <div class="japanese">${item.ja}</div>
+                        <div class="romaji">${item.romaji}</div>
+                        <div class="meaning">${item.meaning}</div>
+                    </div>
+                    <button class="audio-btn" onclick="playAudio('${item.ja}')">🔊</button>
+                </div>
+            `).join('');
+        }
+
+        // Render Phrases
+        function renderPhrases() {
+            const grid = document.getElementById('phrases-grid');
+            grid.innerHTML = phrasesData.map(item => `
+                <div class="phrase-item">
+                    <div class="japanese">${item.ja}</div>
+                    <div class="romaji">${item.romaji}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <button class="audio-btn" onclick="playAudio('${item.ja}')">🔊 Dengarkan</button>
+                </div>
+            `).join('');
+        }
+
+        // Modal
+        function showCharModal(char, romaji, type) {
+            document.getElementById('modal-title').textContent = `${type}: ${char}`;
+            document.getElementById('modal-char').textContent = char;
+            document.getElementById('modal-romaji').textContent = romaji;
+            document.getElementById('char-modal').classList.add('active');
+        }
+
+        document.getElementById('char-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
+        // Quiz State
+        let quizState = {
+            current: 0,
+            score: 0,
+            selected: null,
+            answered: false
+        };
+
+        // Render Quiz
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            if (quizState.current >= quizData.length) {
+                // Show results
+                const percentage = (quizState.score / quizData.length) * 100;
+                let emoji = percentage === 100 ? '🎉' : percentage >= 50 ? '👍' : '💪';
+                let message = percentage === 100 ? 'Sempurna! Kamu sudah menguasai materi ini!' : 
+                              percentage >= 50 ? 'Bagus! Terus berlatih untuk hasil yang lebih baik!' : 
+                              'Jangan menyerah! Terus berlatih ya!';
+                
+                container.innerHTML = `
+                    <div class="quiz-result">
+                        <div class="emoji">${emoji}</div>
+                        <h3>Quiz Selesai!</h3>
+                        <p class="score">Skor kamu: ${quizState.score} dari ${quizData.length}</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${percentage}%"></div>
+                        </div>
+                        <p class="message">${message}</p>
+                        <button class="btn btn-lg" onclick="resetQuiz()">Coba Lagi</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = quizData[quizState.current];
+            
+            container.innerHTML = `
+                <div class="quiz-progress">
+                    <div class="quiz-progress-header">
+                        <span>Soal ${quizState.current + 1} dari ${quizData.length}</span>
+                        <span>Skor: ${quizState.score}</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${(quizState.current / quizData.length) * 100}%"></div>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <h3>${q.q}</h3>
+                    ${q.ja ? `<div class="japanese">${q.ja}</div>` : ''}
+                </div>
+                <div class="quiz-options">
+                    ${q.options.map((opt, i) => `
+                        <button class="quiz-option ${quizState.answered ? (i === q.correct ? 'correct' : i === quizState.selected ? 'wrong' : '') : ''}" 
+                                onclick="selectAnswer(${i})" 
+                                ${quizState.answered ? 'disabled' : ''}>
+                            ${String.fromCharCode(65 + i)}. ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                ${quizState.answered ? `
+                    <div class="quiz-next">
+                        <button class="btn" onclick="nextQuestion()">
+                            ${quizState.current < quizData.length - 1 ? 'Selanjutnya →' : 'Lihat Hasil →'}
+                        </button>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function selectAnswer(index) {
+            if (quizState.answered) return;
+            
+            quizState.selected = index;
+            quizState.answered = true;
+            
+            if (index === quizData[quizState.current].correct) {
+                quizState.score++;
+            }
+            
+            renderQuiz();
+        }
+
+        function nextQuestion() {
+            quizState.current++;
+            quizState.selected = null;
+            quizState.answered = false;
+            renderQuiz();
+        }
+
+        function resetQuiz() {
+            quizState = {
+                current: 0,
+                score: 0,
+                selected: null,
+                answered: false
+            };
+            renderQuiz();
+        }
+
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+                
+                // Update active tab button
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active content
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderHiragana();
+            renderKatakana();
+            renderKanji();
+            renderVocab();
+            renderPhrases();
+            renderQuiz();
+        });
+    </script>
+</body>
+</html>
